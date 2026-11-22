@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Level Design: Steampunk City &amp; 4KOMA | Charity Tan</title>
+    <meta
+      name="description"
+      content="Case study: four Mega Man Maker levels by Charity Tan, documented screen by screen with mechanic cadence, intensity ratings and pacing curves."
+    />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:title"
+      content="Level Design: Steampunk City &amp; 4KOMA | Charity Tan"
+    />
+    <meta
+      property="og:description"
+      content="Case study: four Mega Man Maker levels by Charity Tan, documented screen by screen with mechanic cadence, intensity ratings and pacing curves."
+    />
+    <meta
+      property="og:image"
+      content="https://teaanohh.github.io/assets/video/steampunk-1.jpg"
+    />
+    <meta
+      property="og:url"
+      content="https://teaanohh.github.io/work/level-design.html"
+    />
+    <meta name="theme-color" content="#140f2b" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&amp;family=Jersey+15&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/main.js"></script>
+  </head>
+  <body class="page-case">
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="hud">
+      <nav class="hud-in" aria-label="Main">
+        <a class="brand" href="../" data-wipe="All work">Charity Tan</a>
+        <ul>
+          <li><a href="../#games" data-wipe="All work">Games</a></li>
+          <li><a href="../#design" data-wipe="All work">Design</a></li>
+          <li class="hide-sm">
+            <a href="../#about" data-wipe="All work">About</a>
+          </li>
+          <li>
+            <a
+              href="../assets/CharityTan-Resume.pdf"
+              target="_blank"
+              rel="noopener"
+              >Resume</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <div class="progress" aria-hidden="true"></div>
+    </header>
+    <main id="main" class="wrap case">
+      <header class="case-hero">
+        <a class="back" href="../#games" data-wipe="All work">← All work</a>
+        <p class="eyebrow">Level design · Case study</p>
+        <h1>Steampunk City &amp; 4KOMA</h1>
+        <p class="lede">
+          Four levels designed in Mega Man Maker. Each is documented screen by
+          screen with its purpose, mechanic cadence and a 1–5 intensity rating,
+          then checked against a pacing curve.
+        </p>
+        <dl class="facts">
+          <div>
+            <dt>Role</dt>
+            <dd>Solo level designer</dd>
+          </div>
+          <div>
+            <dt>Tool</dt>
+            <dd>Mega Man Maker</dd>
+          </div>
+          <div>
+            <dt>Scope</dt>
+            <dd>3 linked levels (25 screens) + a 4-screen 4KOMA</dd>
+          </div>
+          <div>
+            <dt>When</dt>
+            <dd>May – Jul 2026 · CSD2541 Level Design</dd>
+          </div>
+        </dl>
+      </header>
+
+      <section class="briefing" aria-labelledby="constraint-title">
+        <h2 id="constraint-title">The constraint</h2>
+        <p>
+          Mega Man Maker has a fixed kit of tiles, enemies and gadgets. I
+          couldn't create new mechanics, only choose, combine and order existing
+          ones. So the design work was in <strong>sequencing</strong>: what a
+          player learns on each screen, when two ideas get combined, and where
+          the tension rises and drops.
+        </p>
+        <p>For every screen I wrote down three things:</p>
+        <ul class="bullets">
+          <li><strong>Purpose:</strong> what the screen teaches or tests.</li>
+          <li>
+            <strong>Cadence:</strong> which mechanics are in play, e.g. A
+            (traversal), B (environmental interaction), C (hazards), D
+            (enemies), A′ (timed movement).
+          </li>
+          <li>
+            <strong>Intensity:</strong> a 1–5 rating, which I plotted as a
+            pacing curve to check the level's rhythm.
+          </li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="steampunk-title">
+        <div class="briefing">
+          <h2 id="steampunk-title">
+            Steampunk City: a <span class="nobr">3-level</span> progression
+          </h2>
+          <p>
+            The three levels follow the player down through the city, from the
+            bright Upper District to the industrial core. Each one is harder
+            than the last, and they're connected by a reward. The Level 1 boss
+            drops a <strong>fire weapon</strong>, and the bosses in Levels 2 and
+            3 are weak to fire. Beating one level gives you the tool for the
+            next.
+          </p>
+        </div>
+
+        <h3 class="level-head">
+          Level 1: The Streets of the Upper District
+          <span class="meta">· Easy · 8 screens</span>
+        </h3>
+        <div class="two-up">
+          <figure class="media">
+            <video
+              controls
+              preload="none"
+              playsinline
+              width="768"
+              height="672"
+              poster="../assets/video/steampunk-1.jpg"
+            >
+              <source src="../assets/video/steampunk-1.mp4" type="video/mp4" />
+            </video>
+            <figcaption class="cap">
+              <span class="cap-no" aria-hidden="true"></span>
+              <span class="cap-title"
+                >Steampunk City, Level 1: gameplay video</span
+              >
+              <span class="cap-line">The Streets of the Upper District</span>
+            </figcaption>
+          </figure>
+          <div class="chart">
+            <p class="chart-title">Pacing curve</p>
+            <svg
+              class="pacing"
+              viewBox="0 0 640 334"
+              role="img"
+              aria-label="Level 1 intensity by screen: 1, 2, 3, 3, 2, 3, 4, 5"
+            >
+              <line class="grid-line" x1="46" x2="616" y1="214" y2="214" />
+              <text class="axis-label" x="30" y="221" text-anchor="end">1</text>
+              <line class="grid-line" x1="46" x2="616" y1="164.5" y2="164.5" />
+              <text class="axis-label" x="30" y="171.5" text-anchor="end">
+                2
+              </text>
+              <line class="grid-line" x1="46" x2="616" y1="115" y2="115" />
+              <text class="axis-label" x="30" y="122" text-anchor="end">3</text>
+              <line class="grid-line" x1="46" x2="616" y1="65.5" y2="65.5" />
+              <text class="axis-label" x="30" y="72.5" text-anchor="end">
+                4
+              </text>
+              <line class="grid-line" x1="46" x2="616" y1="16" y2="16" />
+              <text class="axis-label" x="30" y="23" text-anchor="end">5</text>
+              <polygon
+                class="area"
+                points="46,214 46,214 127.4,164.5 208.9,115 290.3,115 371.7,164.5 453.1,115 534.6,65.5 616,16 616,214"
+              />
+              <polyline
+                class="curve"
+                points="46,214 127.4,164.5 208.9,115 290.3,115 371.7,164.5 453.1,115 534.6,65.5 616,16"
+              />
+              <rect class="dot" x="40" y="208" width="12" height="12" />
+              <text class="axis-label" x="46" y="250" text-anchor="middle">
+                1
+              </text>
+              <text class="tag" x="46" y="286" text-anchor="middle">A</text>
+              <rect class="dot" x="121.4" y="158.5" width="12" height="12" />
+              <text class="axis-label" x="127.4" y="250" text-anchor="middle">
+                2
+              </text>
+              <text class="tag" x="127.4" y="286" text-anchor="middle">A</text>
+              <rect class="dot" x="202.9" y="109" width="12" height="12" />
+              <text class="axis-label" x="208.9" y="250" text-anchor="middle">
+                3
+              </text>
+              <text class="tag" x="208.9" y="286" text-anchor="middle">
+                A+D
+              </text>
+              <rect class="dot" x="284.3" y="109" width="12" height="12" />
+              <text class="axis-label" x="290.3" y="250" text-anchor="middle">
+                4
+              </text>
+              <text class="tag" x="290.3" y="286" text-anchor="middle">
+                A+D
+              </text>
+              <rect class="dot" x="365.7" y="158.5" width="12" height="12" />
+              <text class="axis-label" x="371.7" y="250" text-anchor="middle">
+                5
+              </text>
+              <text class="tag" x="371.7" y="286" text-anchor="middle">
+                A+D
+              </text>
+              <rect class="dot" x="447.1" y="109" width="12" height="12" />
+              <text class="axis-label" x="453.1" y="250" text-anchor="middle">
+                6
+              </text>
+              <text class="tag" x="453.1" y="286" text-anchor="middle">
+                A+D
+              </text>
+              <rect class="dot" x="528.6" y="59.5" width="12" height="12" />
+              <text class="axis-label" x="534.6" y="250" text-anchor="middle">
+                7
+              </text>
+              <text class="tag" x="534.6" y="286" text-anchor="middle">
+                A+D
+              </text>
+              <rect class="dot" x="610" y="10" width="12" height="12" />
+              <text class="axis-label" x="616" y="250" text-anchor="middle">
+                8
+              </text>
+              <text class="tag" x="616" y="286" text-anchor="middle">A+D</text>
+              <text class="axis-label" x="331" y="328" text-anchor="middle">
+                Screen
+              </text>
+            </svg>
+            <p class="note">
+              An onboarding level. Screens 1–2 are traversal only. Enemies
+              arrive on screen 3, screen 5 dips to let the player breathe, and
+              the level builds to the boss.
+            </p>
+          </div>
+        </div>
+
+        <h3 class="level-head">
+          Level 2: The Ventilation Grids
+          <span class="meta">· Medium · 9 screens</span>
+        </h3>
+        <div class="two-up">
+          <figure class="media">
+            <video
+              controls
+              preload="none"
+              playsinline
+              width="1280"
+              height="720"
+              poster="../assets/video/steampunk-2.jpg"
+            >
+              <source src="../assets/video/steampunk-2.mp4" type="video/mp4" />
+            </video>
+            <figcaption class="cap">
+              <span class="cap-no" aria-hidden="true"></span>
+              <span class="cap-title"
+                >Steampunk City, Level 2: gameplay video</span
+              >
+              <span class="cap-line">The Ventilation Grids</span>
+            </figcaption>
+          </figure>
+          <div class="chart">
+            <p class="chart-title">Pacing curve</p>
+            <svg
+              class="pacing"
+              viewBox="0 0 640 334"
+              role="img"
+              aria-label="Level 2 intensity by screen: 1, 2, 3, 2, 4, 3, 4, 3, 5"
+            >
+              <line class="grid-line" x1="46" x2="616" y1="214" y2="214" />
+              <text class="axis-label" x="30" y="221" text-anchor="end">1</text>
+              <line class="grid-line" x1="46" x2="616" y1="164.5" y2="164.5" />
+              <text class="axis-label" x="30" y="171.5" text-anchor="end">
+                2
+              </text>
+              <line class="grid-line" x1="46" x2="616" y1="115" y2="115" />
+              <text class="axis-label" x="30" y="122" text-anchor="end">3</text>
+              <line class="grid-line" x1="46" x2="616" y1="65.5" y2="65.5" />
+              <text class="axis-label" x="30" y="72.5" text-anchor="end">
+                4
+              </text>
+              <line class="grid-line" x1="46" x2="616" y1="16" y2="16" />
+              <text class="axis-label" x="30" y="23" text-anchor="end">5</text>
+              <polygon
+                class="area"
+                points="46,214 46,214 117.2,164.5 188.5,115 259.8,164.5 331,65.5 402.2,115 473.5,65.5 544.8,115 616,16 616,214"
+              />
+              <polyline
+                class="curve"
+                points="46,214 117.2,164.5 188.5,115 259.8,164.5 331,65.5 402.2,115 473.5,65.5 544.8,115 616,16"
+              />
+              <rect class="dot" x="40" y="208" width="12" height="12" />
+              <text class="axis-label" x="46" y="250" text-anchor="middle">
+                1
+              </text>
+              <rect class="dot" x="111.2" y="158.5" width="12" height="12" />
+              <text class="axis-label" x="117.2" y="250" text-anchor="middle">
+                2
+              </text>
+              <rect class="dot" x="182.5" y="109" width="12" height="12" />
+              <text class="axis-label" x="188.5" y="250" text-anchor="middle">
+                3
+              </text>
+              <rect class="dot" x="253.8" y="158.5" width="12" height="12" />
+              <text class="axis-label" x="259.8" y="250" text-anchor="middle">
+                4
+              </text>
+              <rect class="dot" x="325" y="59.5" width="12" height="12" />
+              <text class="axis-label" x="331" y="250" text-anchor="middle">
+                5
+              </text>
+              <rect class="dot" x="396.2" y="109" width="12" height="12" />
+              <text class="axis-label" x="402.2" y="250" text-anchor="middle">
+                6
+              </text>
+              <rect class="dot" x="467.5" y="59.5" width="12" height="12" />
+              <text class="axis-label" x="473.5" y="250" text-anchor="middle">
+                7
+              </text>
+              <rect class="dot" x="538.8" y="109" width="12" height="12" />
+              <text class="axis-label" x="544.8" y="250" text-anchor="middle">
+                8
+              </text>
+              <rect class="dot" x="610" y="10" width="12" height="12" />
+              <text class="axis-label" x="616" y="250" text-anchor="middle">
+                9
+              </text>
+              <text class="axis-label" x="331" y="328" text-anchor="middle">
+                Screen
+              </text>
+            </svg>
+            <p class="note">
+              Adds timed spike-and-ladder phases, moving rail platforms and a
+              red/blue key hunt. Peaks alternate with recovery screens before
+              the boss.
+            </p>
+          </div>
+        </div>
+
+        <h3 class="level-head">
+          Level 3: The Industrial Core
+          <span class="meta">· Hard · 8 screens</span>
+        </h3>
+        <div class="two-up">
+          <figure class="media">
+            <video
+              controls
+              preload="none"
+              playsinline
+              width="768"
+              height="672"
+              poster="../assets/video/steampunk-3.jpg"
+            >
+              <source src="../assets/video/steampunk-3.mp4" type="video/mp4" />
+            </video>
+            <figcaption class="cap">
+              <span class="cap-no" aria-hidden="true"></span>
+              <span class="cap-title"
+                >Steampunk City, Level 3: gameplay video</span
+              >
+              <span class="cap-line">The Industrial Core</span>
+            </figcaption>
+          </figure>
+          <div class="chart">
+            <p class="chart-title">Pacing curve</p>
+            <svg
+              class="pacing"
+              viewBox="0 0 640 334"
+              role="img"
+              aria-label="Level 3 intensity by screen: 1, 2, 2, 3, 2, 4, 3, 5"
+            >
+              <line class="grid-line" x1="46" x2="616" y1="214" y2="214" />
+              <text class="axis-label" x="30" y="221" text-anchor="end">1</text>
+              <line class="grid-line" x1="46" x2="616" y1="164.5" y2="164.5" />
+              <text class="axis-label" x="30" y="171.5" text-anchor="end">
+                2
+              </text>
+              <line class="grid-line" x1="46" x2="616" y1="115" y2="115" />
+              <text class="axis-label" x="30" y="122" text-anchor="end">3</text>
+              <line class="grid-line" x1="46" x2="616" y1="65.5" y2="65.5" />
+              <text class="axis-label" x="30" y="72.5" text-anchor="end">
+                4
+              </text>
+              <line class="grid-line" x1="46" x2="616" y1="16" y2="16" />
+              <text class="axis-label" x="30" y="23" text-anchor="end">5</text>
+              <polygon
+                class="area"
+                points="46,214 46,214 127.4,164.5 208.9,164.5 290.3,115 371.7,164.5 453.1,65.5 534.6,115 616,16 616,214"
+              />
+              <polyline
+                class="curve"
+                points="46,214 127.4,164.5 208.9,164.5 290.3,115 371.7,164.5 453.1,65.5 534.6,115 616,16"
+              />
+              <rect class="dot" x="40" y="208" width="12" height="12" />
+              <text class="axis-label" x="46" y="250" text-anchor="middle">
+                1
+              </text>
+              <rect class="dot" x="121.4" y="158.5" width="12" height="12" />
+              <text class="axis-label" x="127.4" y="250" text-anchor="middle">
+                2
+              </text>
+              <rect class="dot" x="202.9" y="158.5" width="12" height="12" />
+              <text class="axis-label" x="208.9" y="250" text-anchor="middle">
+                3
+              </text>
+              <rect class="dot" x="284.3" y="109" width="12" height="12" />
+              <text class="axis-label" x="290.3" y="250" text-anchor="middle">
+                4
+              </text>
+              <rect class="dot" x="365.7" y="158.5" width="12" height="12" />
+              <text class="axis-label" x="371.7" y="250" text-anchor="middle">
+                5
+              </text>
+              <rect class="dot" x="447.1" y="59.5" width="12" height="12" />
+              <text class="axis-label" x="453.1" y="250" text-anchor="middle">
+                6
+              </text>
+              <rect class="dot" x="528.6" y="109" width="12" height="12" />
+              <text class="axis-label" x="534.6" y="250" text-anchor="middle">
+                7
+              </text>
+              <rect class="dot" x="610" y="10" width="12" height="12" />
+              <text class="axis-label" x="616" y="250" text-anchor="middle">
+                8
+              </text>
+              <text class="axis-label" x="331" y="328" text-anchor="middle">
+                Screen
+              </text>
+            </svg>
+            <p class="note">
+              Introduces conveyor belts, button-driven rails, hidden blocks,
+              magnetic walls, springs and fan currents, one at a time, then
+              combines them in the Core Guardian boss fight.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="koma-title">
+        <div class="briefing">
+          <h2 id="koma-title">4KOMA: teaching 3 mechanics in 4 screens</h2>
+          <p>
+            4KOMA follows the four-panel comic structure: introduce, develop,
+            twist, conclude. With only 4 screens, every screen had to do one
+            job. Each of the first three introduces one new idea on its own, and
+            the last asks the player to use them together.
+          </p>
+        </div>
+        <div class="two-up">
+          <figure class="media">
+            <video
+              controls
+              preload="none"
+              playsinline
+              width="768"
+              height="672"
+              poster="../assets/video/4koma.jpg"
+            >
+              <source src="../assets/video/4koma.mp4" type="video/mp4" />
+            </video>
+            <figcaption class="cap">
+              <span class="cap-no" aria-hidden="true"></span>
+              <span class="cap-title">4KOMA jungle level: gameplay video</span>
+              <span class="cap-line">Teaching 3 mechanics in 4 screens</span>
+            </figcaption>
+          </figure>
+          <div class="chart">
+            <p class="chart-title">Pacing curve</p>
+            <svg
+              class="pacing"
+              viewBox="0 0 640 334"
+              role="img"
+              aria-label="4KOMA intensity by screen: 1, 2, 3, 5"
+            >
+              <line class="grid-line" x1="46" x2="616" y1="214" y2="214" />
+              <text class="axis-label" x="30" y="221" text-anchor="end">1</text>
+              <line class="grid-line" x1="46" x2="616" y1="164.5" y2="164.5" />
+              <text class="axis-label" x="30" y="171.5" text-anchor="end">
+                2
+              </text>
+              <line class="grid-line" x1="46" x2="616" y1="115" y2="115" />
+              <text class="axis-label" x="30" y="122" text-anchor="end">3</text>
+              <line class="grid-line" x1="46" x2="616" y1="65.5" y2="65.5" />
+              <text class="axis-label" x="30" y="72.5" text-anchor="end">
+                4
+              </text>
+              <line class="grid-line" x1="46" x2="616" y1="16" y2="16" />
+              <text class="axis-label" x="30" y="23" text-anchor="end">5</text>
+              <polygon
+                class="area"
+                points="46,214 46,214 236,164.5 426,115 616,16 616,214"
+              />
+              <polyline
+                class="curve"
+                points="46,214 236,164.5 426,115 616,16"
+              />
+              <rect class="dot" x="40" y="208" width="12" height="12" />
+              <text class="axis-label" x="46" y="250" text-anchor="middle">
+                1
+              </text>
+              <text class="tag" x="46" y="286" text-anchor="middle">A</text>
+              <rect class="dot" x="230" y="158.5" width="12" height="12" />
+              <text class="axis-label" x="236" y="250" text-anchor="middle">
+                2
+              </text>
+              <text class="tag" x="236" y="286" text-anchor="middle">A+D</text>
+              <rect class="dot" x="420" y="109" width="12" height="12" />
+              <text class="axis-label" x="426" y="250" text-anchor="middle">
+                3
+              </text>
+              <text class="tag" x="426" y="286" text-anchor="middle">A+T</text>
+              <rect class="dot" x="610" y="10" width="12" height="12" />
+              <text class="axis-label" x="616" y="250" text-anchor="middle">
+                4
+              </text>
+              <text class="tag" x="616" y="286" text-anchor="middle">
+                A+R+T
+              </text>
+              <text class="axis-label" x="331" y="328" text-anchor="middle">
+                Screen
+              </text>
+            </svg>
+            <p class="note">
+              A: navigation · D: dodging fire traps · T: timing disappearing
+              blocks · R: the Rush ability. The jump from 3 to 5 is deliberate,
+              because the final screen combines everything.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="briefing learned" aria-labelledby="taught-title">
+        <h2 class="learned-title" id="taught-title">What this taught me</h2>
+        <p>
+          Writing a purpose for every screen made weak screens obvious. If I
+          couldn't say what a screen taught, it didn't belong. Plotting
+          intensity also showed me that a good curve isn't a straight line up.
+          Players need low points to recover before the next peak.
+        </p>
+      </section>
+
+      <nav class="next" aria-label="More projects">
+        <a href="the-last-act.html" data-wipe="The Last Act"
+          ><small>Previous</small><strong>← The Last Act</strong></a
+        >
+        <a class="right" href="mk-ultra.html" data-wipe="MK-ULTRA"
+          ><small>Next project</small><strong>MK-ULTRA →</strong></a
+        >
+      </nav>
+    </main>
+    <footer class="foot">
+      <div class="wrap">
+        <span>© <span id="year">2026</span> Charity Tan</span>
+        <span class="foot-links">
+          <a href="mailto:charitytanwork@gmail.com">charitytanwork@gmail.com</a>
+          <a
+            class="foot-mark"
+            href="https://www.linkedin.com/in/charity-tan/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Charity Tan on LinkedIn"
+          >
+            <svg
+              class="mark"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fill="currentColor"
+                fill-rule="evenodd"
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+              />
+            </svg>
+          </a>
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>

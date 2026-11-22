@@ -1,0 +1,1764 @@
+/* Charity Tan's portfolio in the Level Select style: the site as a game's
+   menu, after Rhythm Punk's sunset city. One stylesheet for every page. */
+
+/* Stands in for Jersey 15 until it loads, sized to its widths and heights
+   so the swap moves nothing. */
+@font-face {
+  font-family: "Jersey 15 fallback";
+  src: local("Arial"), local("Liberation Sans"), local("Helvetica");
+  size-adjust: 87.4%;
+  ascent-override: 89%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+}
+
+/* Jersey 15 draws its 6 and 9 as an 8 with a one-pixel slit, which shuts
+   under 36px at 80% zoom on an ordinary screen: "2026" reads "2028". So
+   under 36px the pixel face draws no digit. Its digits come from the
+   reading face's bold, scaled to Jersey's cap height (0.556 / 0.668), and
+   its letters stay pixel. Only titles that never go under 36px use
+   --pixel-display, Jersey's own digits. */
+@font-face {
+  font-family: "Atkinson Hyperlegible Digits";
+  src: url(../assets/fonts/atkinson-hyperlegible-bold-digits.woff2)
+    format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0030-0039;
+  size-adjust: 83.2%;
+}
+
+:root {
+  --bg: #140f2b;
+  --panel: #221a45;
+  --panel-2: #2d2358;
+  --line: #4a3d86;
+  --ink: #f6efe1;
+  --muted: #cfc6e2;
+  --magenta: #ff5c9a;
+  --amber: #ffb347;
+  --amber-hi: #ffd08a;
+  --cyan: #5ad8ff;
+  --screen: #fff7e8;
+  --pixel:
+    "Atkinson Hyperlegible Digits", "Jersey 15", "Jersey 15 fallback",
+    sans-serif;
+  --pixel-display: "Jersey 15", "Jersey 15 fallback", sans-serif;
+  --body: "Atkinson Hyperlegible", system-ui, sans-serif;
+  --step: steps(4, end);
+  --ease-out: cubic-bezier(0, 0, 0.38, 0.9);
+  --hud-h: 64px;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  font-synthesis: none;
+  scroll-padding-top: calc(var(--hud-h) + 56px);
+  background-color: var(--bg);
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image: radial-gradient(
+    rgba(200, 190, 220, 0.07) 1px,
+    transparent 1px
+  );
+  background-size: 8px 8px;
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--body);
+  overflow-wrap: break-word;
+  -webkit-tap-highlight-color: transparent;
+}
+
+main {
+  display: block;
+  overflow-x: clip;
+}
+img,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+img {
+  height: auto;
+}
+a {
+  color: inherit;
+}
+a,
+button {
+  touch-action: manipulation;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--pixel);
+  font-weight: 400;
+  line-height: 1;
+  margin: 0;
+}
+/* From 720px up a heading runs to the column's end before it breaks; on a
+   phone, where the column is the screen, it stays balanced. */
+@media (max-width: 719px) {
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+}
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+/* A heading breaks only between words, never inside a hyphenated one. */
+.nobr {
+  white-space: nowrap;
+}
+figure {
+  margin: 0;
+}
+em {
+  font-style: italic;
+}
+
+:focus-visible {
+  outline: 4px solid var(--cyan);
+  outline-offset: 4px;
+}
+
+[id] {
+  scroll-margin-top: calc(var(--hud-h) + 24px);
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+@media (min-width: 720px) {
+  .wrap {
+    padding-inline: 32px;
+  }
+}
+
+.skip {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 2000;
+  background: var(--amber);
+  color: var(--bg);
+  padding: 10px 14px;
+  font: 400 1.35rem var(--pixel);
+  text-decoration: none;
+}
+.skip:focus {
+  top: 12px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.eyebrow {
+  font: 400 1.3rem/1.1 var(--pixel);
+  color: var(--cyan);
+  letter-spacing: 0.03em;
+  margin-bottom: 12px;
+}
+
+/* Pixel border: four hard shadows leave the corners notched. */
+.tile,
+.btn,
+.chips li,
+.inventory li,
+.quest,
+.facts > div,
+.party,
+.learned,
+.next a,
+.screen,
+.media,
+.chart,
+.gallery figure,
+.sprites {
+  --b: var(--line);
+  box-shadow:
+    0 -4px 0 0 var(--b),
+    0 4px 0 0 var(--b),
+    -4px 0 0 0 var(--b),
+    4px 0 0 0 var(--b);
+}
+
+/* HUD bar */
+.hud {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 4px solid var(--panel-2);
+}
+.hud-in {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 0 16px;
+  min-height: var(--hud-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+@media (min-width: 720px) {
+  .hud-in {
+    padding-inline: 32px;
+  }
+}
+.brand {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font: 400 1.75rem/1 var(--pixel);
+  color: var(--amber);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.hud ul {
+  display: flex;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.hud li a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 4px 10px;
+  font: 400 1.4rem/1 var(--pixel);
+  text-decoration: none;
+  color: var(--ink);
+}
+.hud li a:hover {
+  color: var(--amber);
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+@media (max-width: 520px) {
+  .hide-sm {
+    display: none;
+  }
+  .hud li a {
+    padding-inline: 8px;
+    font-size: 1.3rem;
+  }
+  .brand {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 379px) {
+  .hud-in {
+    gap: 8px;
+  }
+  .hud li a {
+    padding-inline: 7px;
+    font-size: 1.15rem;
+  }
+  .brand {
+    font-size: 1.35rem;
+  }
+}
+
+/* Buttons */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  margin-top: 28px;
+}
+.btn {
+  --b: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  min-height: 48px;
+  max-width: 100%;
+  background: var(--panel);
+  color: var(--ink);
+  font: 400 1.45rem/1.1 var(--pixel);
+  text-decoration: none;
+  transition: transform 160ms var(--step);
+}
+.btn:hover {
+  --b: var(--cyan);
+}
+.btn.start {
+  --b: var(--amber);
+  background: var(--amber);
+  color: var(--bg);
+}
+.btn.start:hover {
+  --b: var(--amber-hi);
+  background: var(--amber-hi);
+}
+@media (hover: hover) {
+  .btn:hover {
+    transform: translate(0, -4px);
+  }
+}
+.btn:active {
+  transform: translate(0, 2px);
+}
+.pip {
+  width: 12px;
+  height: 14px;
+  flex: none;
+  background: currentColor;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  transition: transform 160ms steps(2, end);
+}
+.btn:hover .pip,
+.btn:focus-visible .pip {
+  transform: translateX(4px);
+}
+/* The LinkedIn mark: one colour, the label's cap height, which sits on the
+   label's baseline when centred in the row. */
+.mark {
+  flex: none;
+  width: 0.56em;
+  height: 0.56em;
+}
+
+/* Title screen */
+.title-screen {
+  position: relative;
+  overflow: hidden;
+  padding: 64px 0 80px;
+  isolation: isolate;
+}
+@media (min-width: 960px) {
+  .title-screen {
+    min-height: calc(100vh - var(--hud-h));
+    min-height: calc(100svh - var(--hud-h));
+    display: flex;
+    align-items: center;
+    padding: 64px 0;
+  }
+}
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.backdrop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 70%;
+  image-rendering: pixelated;
+  opacity: 0.5;
+}
+.backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(20, 15, 43, 0.96) 0%,
+      rgba(20, 15, 43, 0.82) 45%,
+      rgba(20, 15, 43, 0.35) 100%
+    ),
+    linear-gradient(0deg, var(--bg) 0%, transparent 30%);
+}
+@media (max-width: 720px) {
+  .backdrop::after {
+    background: linear-gradient(
+      180deg,
+      rgba(20, 15, 43, 0.55) 0%,
+      rgba(20, 15, 43, 0.9) 45%,
+      var(--bg) 100%
+    );
+  }
+}
+.game-title {
+  font: 400 clamp(4.4rem, 22vw, 10.5rem)/0.82 var(--pixel-display);
+  color: var(--ink);
+  text-shadow: 0.05em 0.05em 0 var(--magenta);
+  margin: 4px 0 32px;
+}
+.game-title span {
+  display: inline-block;
+}
+.game-title span + span {
+  color: var(--amber);
+}
+.title-screen h1 {
+  font-size: clamp(2.1rem, 4.4vw, 3.4rem);
+  line-height: 1.02;
+}
+.title-screen h1 span {
+  display: block;
+  text-wrap: balance;
+}
+.title-screen h1 em {
+  font-style: normal;
+  color: var(--cyan);
+}
+.lede {
+  margin-top: 20px;
+  font-size: 1.125rem;
+  color: var(--ink);
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 16px;
+  list-style: none;
+  padding: 0;
+  margin: 36px 4px 0;
+}
+.chips li {
+  background: rgba(34, 26, 69, 0.9);
+  padding: 4px 12px 5px;
+  font: 400 1.25rem/1.2 var(--pixel);
+  color: var(--muted);
+}
+
+/* Worlds */
+.world {
+  padding: 88px 0 40px;
+}
+@media (max-width: 719px) {
+  .world {
+    padding-top: 56px;
+  }
+}
+.world-head {
+  display: grid;
+  gap: 12px 40px;
+  margin-bottom: 48px;
+  align-items: end;
+}
+@media (min-width: 900px) {
+  .world-head {
+    grid-template-columns: auto 1fr minmax(0, 420px);
+  }
+}
+.world-tag {
+  display: inline-block;
+  font: 400 1.35rem/1 var(--pixel);
+  color: var(--bg);
+  background: var(--magenta);
+  padding: 6px 12px 7px;
+  align-self: start;
+  justify-self: start;
+}
+.world h2,
+.character h2,
+.continue h2 {
+  font-family: var(--pixel-display);
+  font-size: clamp(2.6rem, 5.6vw, 4rem);
+}
+.world-intro {
+  color: var(--muted);
+}
+
+/* Level-select tiles */
+.tiles {
+  position: relative;
+  display: grid;
+  gap: 36px;
+  grid-template-columns: minmax(0, 1fr);
+  padding-inline: 4px;
+}
+@media (min-width: 640px) {
+  .tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .tile.feature {
+    grid-column: span 2;
+  }
+}
+@media (min-width: 1100px) {
+  .tiles {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .tile.feature {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 2;
+  }
+  .tiles.two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.tile {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--panel);
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 180ms var(--step);
+}
+.tile:hover,
+.tile.is-selected {
+  --b: var(--amber);
+}
+@media (hover: hover) {
+  .tile:hover {
+    transform: translateY(-4px);
+  }
+  .tile:hover .thumb img {
+    transform: scale(1.04);
+  }
+}
+.tile:focus-visible {
+  outline-offset: 6px;
+}
+.thumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--bg);
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 240ms var(--step);
+}
+.thumb.contain {
+  background: var(--screen);
+}
+.thumb.contain img {
+  object-fit: contain;
+  padding: 18px;
+}
+.thumb.pixel img {
+  image-rendering: pixelated;
+}
+.tile.feature .thumb {
+  aspect-ratio: auto;
+  flex: 1 1 auto;
+  min-height: 260px;
+}
+@media (max-width: 1099px) {
+  .tile.feature .thumb {
+    aspect-ratio: 16 / 10;
+    min-height: 0;
+  }
+}
+.tile .body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  gap: 8px;
+  padding: 18px 20px 22px;
+}
+.meta {
+  font: 400 1.2rem/1.15 var(--pixel);
+  color: var(--cyan);
+  text-wrap: pretty;
+}
+.tile-title {
+  font-size: 1.85rem;
+}
+.tile.feature .tile-title {
+  font-family: var(--pixel-display);
+  font-size: clamp(2.3rem, 3.6vw, 3rem);
+}
+.tile .text {
+  color: var(--muted);
+  font-size: 1rem;
+}
+.tile.feature .text {
+  font-size: 1.08rem;
+  color: var(--ink);
+}
+.more {
+  margin-top: auto;
+  padding-top: 8px;
+  font: 400 1.35rem/1 var(--pixel);
+  color: var(--amber);
+}
+
+/* Play mark on a video still */
+.play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  background: rgba(20, 15, 43, 0.88);
+  box-shadow:
+    0 -4px 0 0 var(--amber),
+    0 4px 0 0 var(--amber),
+    -4px 0 0 0 var(--amber),
+    4px 0 0 0 var(--amber);
+}
+.play::before {
+  content: "";
+  position: absolute;
+  left: 24px;
+  top: 18px;
+  width: 22px;
+  height: 28px;
+  background: var(--amber);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+/* The selection cursor: four corner brackets and an arrow that jump in steps. */
+.cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 120ms linear;
+}
+.cursor.on {
+  opacity: 1;
+}
+.cursor .c,
+.cursor .arrow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: transform 200ms steps(4, end);
+}
+.cursor.no-anim .c,
+.cursor.no-anim .arrow {
+  transition: none;
+}
+.cursor .c {
+  width: 20px;
+  height: 20px;
+  border: 0 solid var(--amber);
+}
+.cursor .tl {
+  border-width: 5px 0 0 5px;
+}
+.cursor .tr {
+  border-width: 5px 5px 0 0;
+}
+.cursor .bl {
+  border-width: 0 0 5px 5px;
+}
+.cursor .br {
+  border-width: 0 5px 5px 0;
+}
+.cursor .arrow {
+  width: 22px;
+  height: 18px;
+  background: var(--magenta);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* Character screen */
+.character {
+  padding: 96px 0 40px;
+}
+.char-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 48px;
+}
+@media (min-width: 960px) {
+  .char-grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: start;
+  }
+}
+.char-copy .world-tag {
+  margin-bottom: 20px;
+}
+.char-copy > p:not(.eyebrow):not(.world-tag) {
+  margin-top: 18px;
+}
+.char-copy h2 {
+  margin-bottom: 4px;
+}
+.char-side {
+  display: grid;
+  gap: 40px;
+  padding-inline: 4px;
+}
+
+/* Sprites: still unless asked, or a four-second hello on arrival. */
+.party,
+.sprites {
+  background: var(--panel);
+}
+.party-stage {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 32px;
+  padding: 28px 16px 0;
+  background: linear-gradient(
+    180deg,
+    var(--panel) 0%,
+    var(--panel) 78%,
+    var(--panel-2) 78%
+  );
+}
+.sprite {
+  --fw: 150;
+  --fh: 150;
+  --n: 2;
+  --dur: 0.8s;
+  --s: 1;
+  --sheet: none;
+  --w: calc(var(--fw) * var(--s) * 1px);
+  --h: calc(var(--fh) * var(--s) * 1px);
+  width: var(--w);
+  height: var(--h);
+  flex: none;
+  background: var(--sheet) no-repeat 0 0 / calc(var(--w) * var(--n)) var(--h);
+  image-rendering: pixelated;
+  animation: sprite-play var(--dur) steps(var(--n)) infinite paused;
+}
+.sprite.megamob-idle {
+  --sheet: url(../assets/rhythm/megamob_idle.png);
+}
+.sprite.megamob-attack {
+  --sheet: url(../assets/rhythm/megamob_attack.png);
+  --dur: 0.85s;
+}
+.sprite.megamob-missile {
+  --sheet: url(../assets/rhythm/megamob_missile.png);
+  --n: 17;
+  --dur: 1.7s;
+}
+.sprite.megamob-hurt {
+  --sheet: url(../assets/rhythm/megamob_hurt.png);
+}
+.sprite.megamob-death {
+  --sheet: url(../assets/rhythm/megamob_death.png);
+  --n: 9;
+  --dur: 0.9s;
+}
+.sprite.troll-idle,
+.sprite.troll-death {
+  --fw: 200;
+  --fh: 250;
+}
+.sprite.troll-idle {
+  --sheet: url(../assets/rhythm/troll_idle.png);
+  --n: 6;
+  --dur: 0.6s;
+}
+.sprite.troll-death {
+  --sheet: url(../assets/rhythm/troll_death.png);
+  --n: 7;
+  --dur: 0.7s;
+}
+@media (max-width: 480px) {
+  .sprite {
+    --s: 0.72;
+  }
+  .party-stage {
+    gap: 16px;
+  }
+}
+@media (max-width: 379px) {
+  .party .sprite {
+    --s: 0.6;
+  }
+}
+@keyframes sprite-play {
+  to {
+    background-position: calc(var(--w) * var(--n) * -1) 0;
+  }
+}
+.is-playing .sprite,
+.is-intro .sprite {
+  animation-play-state: running;
+}
+@media (hover: hover) {
+  [data-party]:hover .sprite {
+    animation-play-state: running;
+  }
+}
+.toggle {
+  font: 400 1.25rem/1 var(--pixel);
+  color: var(--ink);
+  background: var(--panel-2);
+  border: 2px solid var(--muted);
+  padding: 8px 14px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.toggle:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+.toggle[aria-pressed="true"] {
+  background: var(--amber);
+  color: var(--bg);
+  border-color: var(--amber);
+}
+
+.inv-title {
+  font-size: 1.75rem;
+  color: var(--amber);
+  margin-bottom: 18px;
+}
+.inventory ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 22px;
+}
+@media (min-width: 560px) {
+  .inventory ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.inventory li {
+  background: var(--panel);
+  padding: 14px 16px;
+  display: grid;
+  align-content: start;
+  gap: 4px;
+}
+.inventory strong {
+  font: 400 1.4rem/1.1 var(--pixel);
+  color: var(--cyan);
+}
+.inventory span {
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+/* Continue? */
+.continue {
+  padding: 104px 0 120px;
+  text-align: center;
+}
+.continue .wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.continue-word {
+  font: 400 clamp(4rem, 16vw, 10rem)/0.9 var(--pixel-display);
+  color: var(--magenta);
+  margin-bottom: 24px;
+  text-shadow: 6px 6px 0 var(--panel-2);
+}
+.continue .muted {
+  margin-top: 14px;
+}
+.continue .actions {
+  justify-content: center;
+}
+
+/* The footer is set in the reading face: its year and its email must be
+   read exactly at any zoom. */
+.foot {
+  border-top: 4px solid var(--panel-2);
+  padding: 20px 0;
+  color: var(--muted);
+  font: 400 1rem/1.2 var(--body);
+}
+.foot .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 16px;
+}
+.foot a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--muted);
+  text-underline-offset: 4px;
+}
+.foot a:hover {
+  color: var(--amber);
+}
+.foot-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+/* The mark alone: small to see, 44 by 44 to tap. Its ring is drawn inside
+   that square so it stays clear of the email beside it. */
+.foot-mark {
+  justify-content: center;
+  min-width: 44px;
+  margin-right: calc((1em - 44px) / 2);
+}
+/* The email's ring, like the mark's, is drawn inside its box, which reaches
+   10px past the address on each side without moving it. */
+.foot-links > a:not(.foot-mark) {
+  padding-inline: 10px;
+  margin-inline: -10px;
+}
+.foot-links > a:focus-visible {
+  outline-offset: -4px;
+}
+.foot-mark .mark {
+  width: 1em;
+  height: 1em;
+}
+
+/* ---------- Project pages ---------- */
+.progress {
+  height: 6px;
+  background: var(--panel-2);
+}
+.page-case {
+  --hud-h: 70px;
+}
+.case {
+  padding-top: 32px;
+  padding-bottom: 40px;
+}
+.back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font: 400 1.4rem/1 var(--pixel);
+  color: var(--amber);
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+.back:hover {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+.case-hero h1 {
+  font-family: var(--pixel-display);
+  font-size: clamp(3.4rem, 12vw, 7.5rem);
+  line-height: 0.9;
+  text-shadow: 0.05em 0.05em 0 var(--magenta);
+  margin-bottom: 24px;
+}
+.facts {
+  display: grid;
+  gap: 22px;
+  margin: 40px 4px 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (min-width: 900px) {
+  .facts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.facts > div {
+  background: var(--panel);
+  padding: 12px 14px;
+}
+.facts dt {
+  font: 400 1.2rem/1.1 var(--pixel);
+  color: var(--cyan);
+}
+.facts dd {
+  margin: 4px 0 0;
+  font-size: 0.98rem;
+}
+@media (max-width: 380px) {
+  .facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Picture titles: one block under every picture, video and sprite panel,
+   an inventory item's label. The item number is drawn here and hidden from
+   screen readers in the markup. */
+main {
+  counter-reset: item;
+}
+figcaption {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: 12px 16px 16px;
+  background: var(--panel);
+  border-top: 4px solid var(--panel-2);
+  font: 700 1rem/1.35 var(--body);
+  color: var(--ink);
+  text-align: left;
+  overflow-wrap: break-word;
+}
+.cap {
+  counter-increment: item;
+}
+.cap-no {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 400 1.15rem/1 var(--pixel);
+  color: var(--amber);
+  letter-spacing: 0.04em;
+}
+.cap-no::before {
+  content: "";
+  flex: none;
+  width: 8px;
+  height: 8px;
+  background: var(--magenta);
+}
+.cap-no::after {
+  content: "Item " counter(item, decimal-leading-zero);
+}
+.cap-title,
+.cap-line {
+  text-wrap: pretty;
+}
+.cap-line {
+  font: 400 0.92rem/1.45 var(--body);
+  color: var(--muted);
+}
+.cap-act {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+}
+.cap-text {
+  display: grid;
+  gap: 4px;
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+
+/* Pictures, videos and charts */
+.media {
+  margin: 56px 4px 0;
+  background: var(--panel);
+  overflow: hidden;
+}
+.media img,
+.media video {
+  width: 100%;
+  height: auto;
+}
+.media video {
+  background: #000;
+}
+.media.paper,
+.gallery figure.paper {
+  background: var(--screen);
+}
+.media.paper img {
+  padding: clamp(16px, 4vw, 40px);
+}
+.media.narrow {
+  max-width: 620px;
+}
+.screen {
+  --b: var(--magenta);
+  margin: 64px 4px 0;
+  max-width: 760px;
+  background: var(--panel);
+  padding: 20px 20px 16px;
+}
+.screen-glass {
+  background: var(--screen);
+  box-shadow: inset 0 0 0 8px var(--bg);
+  display: grid;
+  place-items: center;
+  padding: clamp(24px, 6vw, 48px);
+}
+.screen-glass img {
+  width: 100%;
+  max-width: 460px;
+}
+.screen figcaption {
+  margin: 20px -20px -16px;
+}
+
+.two-up {
+  display: grid;
+  gap: 32px;
+  margin-top: 56px;
+  padding-inline: 4px;
+}
+.two-up > .media,
+.two-up > .chart {
+  margin: 0;
+}
+@media (min-width: 720px) {
+  .two-up {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+.gallery {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  align-items: start;
+  margin-top: 56px;
+  padding-inline: 4px;
+}
+.gallery figure {
+  background: var(--panel);
+  overflow: hidden;
+}
+.gallery img {
+  width: 100%;
+}
+/* In a gallery or a pair of pictures, every picture sits in a slot of the
+   group's own shape (--slot, its tallest picture's width / height, set on
+   the group), so a row's slots are one height and its titles start level
+   whatever their lengths. Only where the group has more than one column. */
+.gallery,
+.two-up:not(:has(> .chart)) {
+  align-items: stretch;
+}
+.gallery img,
+.two-up:not(:has(> .chart)) > .media img {
+  padding: 12px;
+  object-fit: contain;
+  background:
+    radial-gradient(rgba(200, 190, 220, 0.12) 1px, transparent 1px) 0 0 / 8px
+      8px,
+    var(--panel-2);
+}
+/* From 552px a gallery has at least two columns of 240px. A container
+   query would scope the item counter, so this is a viewport query. */
+@media (min-width: 552px) {
+  .gallery img {
+    aspect-ratio: var(--slot, auto);
+  }
+}
+@media (min-width: 720px) {
+  .two-up:not(:has(> .chart)) > .media img {
+    aspect-ratio: var(--slot, auto);
+  }
+}
+.two-up:not(:has(> .chart)) > .media.paper img {
+  padding: clamp(16px, 4vw, 40px);
+  background: none;
+}
+
+.chart {
+  background: var(--panel);
+  padding: 18px 18px 16px;
+}
+.chart-title {
+  font: 400 1.5rem/1 var(--pixel);
+  color: var(--amber);
+  margin-bottom: 12px;
+}
+.pacing {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.pacing .grid-line {
+  stroke: var(--line);
+  stroke-width: 2;
+}
+.pacing .axis-label {
+  fill: var(--muted);
+  font: 400 20px var(--body);
+}
+.pacing .tag {
+  fill: var(--cyan);
+  font: 400 17px var(--body);
+}
+.pacing .area {
+  fill: var(--amber);
+  opacity: 0.16;
+}
+.pacing .curve {
+  fill: none;
+  stroke: var(--amber);
+  stroke-width: 4;
+  stroke-linejoin: miter;
+}
+.pacing .dot {
+  fill: var(--bg);
+  stroke: var(--amber);
+  stroke-width: 4;
+}
+@media (max-width: 719px) {
+  .pacing .axis-label {
+    font-size: 34px;
+  }
+  .pacing .tag {
+    font-size: 30px;
+  }
+}
+.chart .note {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.level-head {
+  margin-top: 72px;
+  font-size: clamp(1.9rem, 4vw, 2.5rem);
+  line-height: 1.05;
+}
+.level-head .meta {
+  display: inline-block;
+  font-size: 0.6em;
+  white-space: nowrap;
+}
+
+/* Sections of her writing */
+.briefing {
+  margin-top: 88px;
+}
+.briefing h2,
+.stage-title,
+.decisions-title {
+  font-family: var(--pixel-display);
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  margin-bottom: 18px;
+}
+.briefing p + p,
+.briefing ul + p,
+.briefing p + ul {
+  margin-top: 16px;
+}
+.briefing .note {
+  margin-top: 16px;
+  font-size: 0.95rem;
+}
+.bullets {
+  padding-left: 0;
+  list-style: none;
+  display: grid;
+  gap: 14px;
+  margin: 18px 0 0;
+}
+.bullets li {
+  position: relative;
+  padding-left: 26px;
+}
+.bullets li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.55em;
+  width: 10px;
+  height: 10px;
+  background: var(--amber);
+}
+.bullets strong {
+  color: var(--ink);
+}
+.sprite-note {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+/* The stages: her lecturer's headings, only those her writing answers */
+.decisions-title {
+  margin-top: 96px;
+}
+.mission {
+  margin-top: 64px;
+  display: grid;
+  gap: 32px;
+}
+.decisions-title + .mission {
+  margin-top: 24px;
+}
+.decisions-title + .mission .lead {
+  margin-bottom: 8px;
+}
+@media (min-width: 960px) {
+  .mission {
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 56px;
+  }
+}
+.stages {
+  position: sticky;
+  top: var(--hud-h);
+  z-index: 10;
+  align-self: start;
+  background: var(--bg);
+  padding: 10px 4px;
+}
+.stages ol {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+}
+.stages a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  text-decoration: none;
+  color: var(--muted);
+  padding: 4px;
+}
+.stages .n {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  font: 400 1.5rem/1 var(--pixel);
+  background: var(--panel);
+  color: var(--ink);
+  box-shadow:
+    0 -3px 0 0 var(--line),
+    0 3px 0 0 var(--line),
+    -3px 0 0 0 var(--line),
+    3px 0 0 0 var(--line);
+}
+.stages .s {
+  font: 400 1.35rem/1 var(--pixel);
+}
+.stages a:hover .s,
+.stages a.is-current .s {
+  color: var(--amber);
+}
+.stages a.is-current .n {
+  background: var(--amber);
+  color: var(--bg);
+}
+@media (max-width: 959px) {
+  .page-case {
+    scroll-padding-top: 150px;
+  }
+  .page-case [id] {
+    scroll-margin-top: 150px;
+  }
+  .stages .s {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .stages a {
+    min-width: 48px;
+    justify-content: center;
+  }
+}
+@media (min-width: 960px) {
+  .stages {
+    top: calc(var(--hud-h) + 16px);
+  }
+  .stages ol {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .stages ol::before {
+    content: "";
+    position: absolute;
+    left: 22px;
+    top: 30px;
+    bottom: 30px;
+    width: 4px;
+    background: var(--panel-2);
+    z-index: -1;
+  }
+}
+
+.stage {
+  padding: 8px 0 64px;
+}
+.stage:last-child {
+  padding-bottom: 0;
+}
+.stage-no {
+  display: inline-block;
+  vertical-align: 0.15em;
+  margin-right: 12px;
+  font: 400 1.3rem/1 var(--pixel);
+  color: var(--bg);
+  background: var(--cyan);
+  padding: 5px 10px 6px;
+  transform-origin: 0 50%;
+}
+.stage > p + p {
+  margin-top: 16px;
+}
+.quests {
+  display: grid;
+  gap: 28px;
+  margin-top: 24px;
+  padding-inline: 4px;
+}
+@media (min-width: 1100px) {
+  .quests.three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .quests.two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.quest {
+  background: var(--panel);
+  padding: 16px 18px 20px;
+  position: relative;
+}
+.quest-tag {
+  margin-bottom: 8px;
+  font: 400 1.15rem/1 var(--pixel);
+  color: var(--magenta);
+}
+.quest-tag span {
+  color: var(--muted);
+}
+.quest-title {
+  font-size: 1.6rem;
+  line-height: 1.05;
+  margin-bottom: 10px;
+}
+.quest p:not(.quest-tag) {
+  color: var(--muted);
+  font-size: 1rem;
+}
+.quest.cleared {
+  --b: var(--cyan);
+}
+.quote {
+  margin: 0;
+  padding: 18px 22px;
+  border-left: 6px solid var(--amber);
+  background: var(--panel);
+}
+.quote p {
+  font-size: 1.2rem;
+}
+.quote footer {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+.quote cite {
+  font-style: normal;
+  color: var(--ink);
+}
+.learned {
+  --b: var(--amber);
+  background: var(--panel);
+  padding: 20px 22px;
+  margin: 36px 4px 0;
+}
+.learned-title {
+  color: var(--amber);
+  font-size: 1.85rem;
+  margin-bottom: 10px;
+}
+.briefing.learned {
+  margin-top: 88px;
+}
+
+/* Rhythm Punk's sprite sheets */
+.sprites {
+  margin: 56px 4px 0;
+}
+.sprite-stage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px 32px;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 24px 16px 28px;
+}
+.sprite-stage + .sprite-stage {
+  border-top: 4px solid var(--panel-2);
+}
+.sprite-group-title {
+  width: 100%;
+  text-align: center;
+  font: 400 1.75rem/1 var(--pixel);
+  color: var(--amber);
+}
+.sprite-pair {
+  display: flex;
+}
+.sprite-label {
+  text-align: center;
+  font: 400 1.2rem/1 var(--pixel);
+  color: var(--muted);
+  margin-top: 8px;
+}
+.media.pixel img {
+  image-rendering: pixelated;
+}
+.quest-tag-next {
+  margin-top: 16px;
+}
+
+/* The next project */
+.next {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 96px;
+  padding-inline: 4px;
+}
+.next a {
+  background: var(--panel);
+  text-decoration: none;
+  padding: 14px 20px;
+  flex: 1 1 220px;
+  transition: transform 160ms var(--step);
+}
+.next a.right {
+  text-align: right;
+}
+.next a:hover {
+  --b: var(--amber);
+}
+@media (hover: hover) {
+  .next a:hover {
+    transform: translateY(-4px);
+  }
+}
+.next small {
+  display: block;
+  font: 400 1.2rem/1.1 var(--pixel);
+  color: var(--cyan);
+}
+.next strong {
+  font: 400 1.85rem/1.05 var(--pixel);
+}
+
+/* ---------- Motion ---------- */
+@keyframes drop {
+  from {
+    transform: translateY(-60px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    translate: 0 24px;
+    scale: 0.96;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+@keyframes slide-tag {
+  from {
+    translate: -32px 0;
+    opacity: 0;
+  }
+  to {
+    translate: 0 0;
+    opacity: 1;
+  }
+}
+@keyframes unlock {
+  from {
+    scale: 0 1;
+  }
+  to {
+    scale: 1 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .game-title span {
+    animation: drop 420ms steps(5, end) both;
+  }
+  .game-title span + span {
+    animation-delay: 90ms;
+  }
+  .title-in > .eyebrow,
+  .title-in > h1,
+  .title-in > .lede,
+  .title-in > .actions,
+  .title-in > .chips {
+    animation: appear 260ms var(--ease-out) both;
+  }
+  .title-in > .eyebrow {
+    animation-delay: 40ms;
+  }
+  .title-in > h1 {
+    animation-delay: 300ms;
+  }
+  .title-in > .lede {
+    animation-delay: 340ms;
+  }
+  .title-in > .actions {
+    animation-delay: 380ms;
+  }
+  .title-in > .chips {
+    animation-delay: 420ms;
+  }
+  .case-hero h1 {
+    animation: drop 400ms steps(5, end) both;
+  }
+
+  @supports (animation-timeline: view()) {
+    .tile {
+      animation: pop linear both;
+      animation-timing-function: steps(4, end);
+      animation-timeline: view();
+      animation-range: entry 0% entry 80%;
+    }
+    .world-tag {
+      animation: slide-tag linear both;
+      animation-timing-function: steps(3, end);
+      animation-timeline: view();
+      animation-range: entry 10% entry 90%;
+    }
+    .stage-no {
+      animation: unlock linear both;
+      animation-timing-function: steps(4, end);
+      animation-timeline: view();
+      animation-range: entry 20% entry 100%;
+    }
+    .quest {
+      animation: pop linear both;
+      animation-timing-function: steps(3, end);
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+  }
+}
+
+/* The pixel wipe: the change between any two pages, in every browser.
+   Closing and opening each take 340ms (js/main.js waits on them). */
+.wipe {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+}
+.wipe .b {
+  background: var(--panel-2);
+  transform: scale(0);
+}
+.wipe .b.alt {
+  background: var(--panel);
+}
+.wipe.covered .b {
+  transform: scale(1.03);
+}
+.wipe.closing .b {
+  animation: blk-in 150ms steps(3, end) both;
+  animation-delay: calc(var(--d) * 190ms);
+}
+.wipe.opening .b {
+  transform: scale(1.03);
+  animation: blk-out 140ms steps(3, end) both;
+  animation-delay: calc(var(--d) * 200ms);
+}
+@keyframes blk-in {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1.03);
+  }
+}
+@keyframes blk-out {
+  from {
+    transform: scale(1.03);
+  }
+  to {
+    transform: scale(0);
+  }
+}
+.wipe-label {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  max-width: calc(100vw - 32px);
+  margin: 0;
+  padding: 12px 18px;
+  background: var(--bg);
+  font: 400 clamp(1.5rem, 4vw, 2.1rem) / 1.1 var(--pixel);
+  color: var(--amber);
+  text-align: center;
+  opacity: 0;
+}
+.wipe.closing .wipe-label {
+  animation: appear 100ms linear 170ms both;
+}
+.wipe.covered .wipe-label {
+  opacity: 1;
+}
+.wipe.opening .wipe-label {
+  opacity: 1;
+  animation: appear 90ms linear reverse both;
+}
+
+/* Reduced motion: the designed still form. Everything sits at its final
+   state; sprites move only when the visitor presses "Animate sprites". */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .tile:hover,
+  .btn:hover,
+  .btn:active,
+  .next a:hover,
+  .tile:hover .thumb img,
+  .btn:hover .pip,
+  .btn:focus-visible .pip {
+    transform: none;
+  }
+  .is-playing .sprite {
+    animation: sprite-play var(--dur) steps(var(--n)) infinite running !important;
+  }
+}

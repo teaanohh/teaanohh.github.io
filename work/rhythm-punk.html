@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rhythm Punk | Charity Tan</title>
+    <meta
+      name="description"
+      content="Rhythm Punk, a rhythm action game. Charity Tan implemented and balanced the Troll and Megamob enemies."
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Rhythm Punk | Charity Tan" />
+    <meta
+      property="og:description"
+      content="Rhythm Punk, a rhythm action game. Charity Tan implemented and balanced the Troll and Megamob enemies."
+    />
+    <meta
+      property="og:image"
+      content="https://teaanohh.github.io/assets/rhythm/menu.jpg"
+    />
+    <meta
+      property="og:url"
+      content="https://teaanohh.github.io/work/rhythm-punk.html"
+    />
+    <meta name="theme-color" content="#140f2b" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&amp;family=Jersey+15&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/main.js"></script>
+  </head>
+  <body class="page-case">
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="hud">
+      <nav class="hud-in" aria-label="Main">
+        <a class="brand" href="../" data-wipe="All work">Charity Tan</a>
+        <ul>
+          <li><a href="../#games" data-wipe="All work">Games</a></li>
+          <li><a href="../#design" data-wipe="All work">Design</a></li>
+          <li class="hide-sm">
+            <a href="../#about" data-wipe="All work">About</a>
+          </li>
+          <li>
+            <a
+              href="../assets/CharityTan-Resume.pdf"
+              target="_blank"
+              rel="noopener"
+              >Resume</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <div class="progress" aria-hidden="true"></div>
+    </header>
+    <main id="main" class="wrap case">
+      <header class="case-hero">
+        <a class="back" href="../#games" data-wipe="All work">← All work</a>
+        <p class="eyebrow">Game</p>
+        <h1>Rhythm Punk</h1>
+        <p class="lede">A rhythm action game set in a pixel-art city.</p>
+        <dl class="facts">
+          <div>
+            <dt>My role</dt>
+            <dd>Gameplay Programmer</dd>
+          </div>
+          <div>
+            <dt>Team</dt>
+            <dd>5 people</dd>
+          </div>
+          <div>
+            <dt>Built with</dt>
+            <dd>C++, Alpha Engine</dd>
+          </div>
+          <div>
+            <dt>Timeline</dt>
+            <dd>Jan – Apr 2025</dd>
+          </div>
+        </dl>
+      </header>
+
+      <figure class="media pixel">
+        <img
+          src="../assets/rhythm/menu.jpg"
+          alt="Rhythm Punk menu screen: a pixel-art city at sunset"
+          width="1200"
+          height="675"
+          fetchpriority="high"
+        />
+        <figcaption class="cap">
+          <span class="cap-no" aria-hidden="true"></span>
+          <span class="cap-title">Rhythm Punk: menu screen</span>
+        </figcaption>
+      </figure>
+
+      <section class="briefing" aria-labelledby="owned-title">
+        <h2 id="owned-title">What I owned</h2>
+        <p>
+          I drew and coded 2 of the game's enemy types, each with a distinct
+          threat:
+        </p>
+        <ul class="bullets">
+          <li><strong>Troll:</strong> an enemy that knocks the player back.</li>
+          <li><strong>Megamob:</strong> an enemy that fires missiles.</li>
+        </ul>
+        <p>
+          I also built the enemy health bars and the game-over and game-complete
+          screens.
+        </p>
+      </section>
+
+      <figure class="sprites" data-party>
+        <div class="sprite-stage">
+          <p class="sprite-group-title">Megamob</p>
+          <div>
+            <div
+              class="sprite megamob-idle"
+              role="img"
+              aria-label="Megamob idle animation"
+            ></div>
+            <p class="sprite-label">Idle</p>
+          </div>
+          <div>
+            <div
+              class="sprite-pair"
+              role="img"
+              aria-label="Megamob attack animation with its missile falling and exploding beside it"
+            >
+              <div class="sprite megamob-attack"></div>
+              <div class="sprite megamob-missile"></div>
+            </div>
+            <p class="sprite-label">Attack + missile</p>
+          </div>
+          <div>
+            <div
+              class="sprite megamob-hurt"
+              role="img"
+              aria-label="Megamob being hit"
+            ></div>
+            <p class="sprite-label">Hit</p>
+          </div>
+          <div>
+            <div
+              class="sprite megamob-death"
+              role="img"
+              aria-label="Megamob death animation"
+            ></div>
+            <p class="sprite-label">Death</p>
+          </div>
+        </div>
+        <div class="sprite-stage">
+          <p class="sprite-group-title">Troll</p>
+          <div>
+            <div
+              class="sprite troll-idle"
+              role="img"
+              aria-label="Troll idle animation"
+            ></div>
+            <p class="sprite-label">Idle</p>
+          </div>
+          <div>
+            <div
+              class="sprite troll-death"
+              role="img"
+              aria-label="Troll death animation"
+            ></div>
+            <p class="sprite-label">Death</p>
+          </div>
+        </div>
+        <figcaption class="cap cap-act">
+          <span class="cap-text">
+            <span class="cap-no" aria-hidden="true"></span>
+            <span class="cap-title"
+              >Rhythm Punk enemy sprite sheets: Megamob and Troll</span
+            >
+            <span class="cap-line"
+              >I drew all of these sprite sheets and coded the enemies'
+              behaviour. A teammate's animation system plays the frames in
+              game.</span
+            >
+          </span>
+          <button
+            class="toggle"
+            type="button"
+            aria-pressed="false"
+            data-sprite-toggle
+          >
+            Animate sprites
+          </button>
+        </figcaption>
+      </figure>
+
+      <div class="mission">
+        <nav class="stages" aria-label="Case study stages">
+          <ol>
+            <li>
+              <a href="#problem"
+                ><span class="n">1</span><span class="s">Problem</span></a
+              >
+            </li>
+            <li>
+              <a href="#changed"
+                ><span class="n">2</span
+                ><span class="s">What I changed</span></a
+              >
+            </li>
+            <li>
+              <a href="#happened"
+                ><span class="n">3</span><span class="s">What happened</span></a
+              >
+            </li>
+          </ol>
+        </nav>
+
+        <div class="stage-list">
+          <section class="stage" id="problem" aria-labelledby="st1">
+            <h2 class="stage-title" id="st1">
+              <span class="stage-no">Stage 1</span> Problem
+            </h2>
+            <div class="quests">
+              <article class="quest solo">
+                <p class="quest-tag">Quest A <span>· Problem</span></p>
+                <h3 class="quest-title">Balancing two new enemies</h3>
+                <p>
+                  Once the Troll and Megamob were in, they changed how hard the
+                  level felt.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="stage" id="changed" aria-labelledby="st2">
+            <h2 class="stage-title" id="st2">
+              <span class="stage-no">Stage 2</span> What I changed
+            </h2>
+            <div class="quests">
+              <article class="quest solo">
+                <p class="quest-tag">Quest A <span>· Choice</span></p>
+                <h3 class="quest-title">Balancing two new enemies</h3>
+                <p>
+                  I tuned their health (including the Troll's max health) and
+                  repositioned them in the level until the difficulty felt
+                  balanced.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="stage" id="happened" aria-labelledby="st3">
+            <h2 class="stage-title" id="st3">
+              <span class="stage-no">Stage 3</span> What happened
+            </h2>
+            <div class="quests">
+              <article class="quest solo cleared">
+                <p class="quest-tag">Quest A <span>· Shipped</span></p>
+                <h3 class="quest-title">Balancing two new enemies</h3>
+                <p>
+                  2 enemy types with health bars, knockback and missile attacks
+                  in the final build.
+                </p>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <nav class="next" aria-label="More projects">
+        <a href="mk-ultra.html" data-wipe="MK-ULTRA"
+          ><small>Previous</small><strong>← MK-ULTRA</strong></a
+        >
+        <a class="right" href="moth-to-a-flame.html" data-wipe="Moth to a Flame"
+          ><small>Next project</small><strong>Moth to a Flame →</strong></a
+        >
+      </nav>
+    </main>
+    <footer class="foot">
+      <div class="wrap">
+        <span>© <span id="year">2026</span> Charity Tan</span>
+        <span class="foot-links">
+          <a href="mailto:charitytanwork@gmail.com">charitytanwork@gmail.com</a>
+          <a
+            class="foot-mark"
+            href="https://www.linkedin.com/in/charity-tan/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Charity Tan on LinkedIn"
+          >
+            <svg
+              class="mark"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fill="currentColor"
+                fill-rule="evenodd"
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+              />
+            </svg>
+          </a>
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>

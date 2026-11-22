@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MK-ULTRA Card Game | Charity Tan</title>
+    <meta
+      name="description"
+      content="MK-ULTRA, a psychological horror card game about sanity and evidence. Charity Tan co-designed the rules, balanced card effects, illustrated the cards and made a 3-card expansion."
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="MK-ULTRA Card Game | Charity Tan" />
+    <meta
+      property="og:description"
+      content="MK-ULTRA, a psychological horror card game about sanity and evidence. Charity Tan co-designed the rules, balanced card effects, illustrated the cards and made a 3-card expansion."
+    />
+    <meta
+      property="og:image"
+      content="https://teaanohh.github.io/assets/mkultra/identity.jpg"
+    />
+    <meta
+      property="og:url"
+      content="https://teaanohh.github.io/work/mk-ultra.html"
+    />
+    <meta name="theme-color" content="#140f2b" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&amp;family=Jersey+15&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/main.js"></script>
+  </head>
+  <body class="page-case">
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="hud">
+      <nav class="hud-in" aria-label="Main">
+        <a class="brand" href="../" data-wipe="All work">Charity Tan</a>
+        <ul>
+          <li><a href="../#games" data-wipe="All work">Games</a></li>
+          <li><a href="../#design" data-wipe="All work">Design</a></li>
+          <li class="hide-sm">
+            <a href="../#about" data-wipe="All work">About</a>
+          </li>
+          <li>
+            <a
+              href="../assets/CharityTan-Resume.pdf"
+              target="_blank"
+              rel="noopener"
+              >Resume</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <div class="progress" aria-hidden="true"></div>
+    </header>
+    <main id="main" class="wrap case">
+      <header class="case-hero">
+        <a class="back" href="../#games" data-wipe="All work">← All work</a>
+        <p class="eyebrow">Card game · Case study</p>
+        <h1><span class="nobr">MK-ULTRA</span></h1>
+        <p class="lede">
+          A psychological horror card game. You play one of four people trapped
+          in a mental institute during the CIA's MKUltra experiments. Collect 4
+          pieces of evidence to expose the truth before your sanity runs out.
+        </p>
+        <dl class="facts">
+          <div>
+            <dt>My role</dt>
+            <dd>Game designer &amp; card artist</dd>
+          </div>
+          <div>
+            <dt>Team</dt>
+            <dd>3 people</dd>
+          </div>
+          <div>
+            <dt>Made with</dt>
+            <dd>Figma</dd>
+          </div>
+          <div>
+            <dt>Scope</dt>
+            <dd>40 cards, 19 sanity tokens, a d20 + 3-card expansion</dd>
+          </div>
+        </dl>
+      </header>
+
+      <figure class="media">
+        <img
+          src="../assets/mkultra/identity.jpg"
+          alt="Four Identity cards styled as aged specimen files"
+          width="1125"
+          height="685"
+          fetchpriority="high"
+        />
+        <figcaption class="cap">
+          <span class="cap-no" aria-hidden="true"></span>
+          <span class="cap-title">MK-ULTRA deck: Identity cards</span>
+          <span class="cap-line">Each changes one rule.</span>
+        </figcaption>
+      </figure>
+
+      <section class="briefing" aria-labelledby="role-title">
+        <h2 id="role-title">My role</h2>
+        <ul class="bullets">
+          <li>
+            <strong>Rules &amp; mechanics:</strong> co-designed the core loop,
+            the sanity system and the win and lose conditions with my team.
+          </li>
+          <li>
+            <strong>Card effects &amp; balancing:</strong> wrote and tuned what
+            the cards do.
+          </li>
+          <li>
+            <strong>Art &amp; layout:</strong> illustrated and laid out every
+            card set: Identity, Experiment, Medication, Activity, Breakdown,
+            Investigation, Evidence and Memory Fragments.
+          </li>
+          <li>
+            <strong>Expansion:</strong> designed and made a 3-card expansion on
+            my own (below).
+          </li>
+        </ul>
+        <p class="muted">
+          The tone was inspired by the psychological horror of
+          <em>The Outlast Trials</em> and the real history of the CIA's MKUltra
+          programme, which our team researched for the game.
+        </p>
+      </section>
+
+      <section class="briefing" aria-labelledby="plays-title">
+        <h2 id="plays-title">How it plays</h2>
+        <p>Each turn has two steps, one forced and one gambled:</p>
+        <ul class="bullets">
+          <li>
+            <strong>The day:</strong> draw 3 cards from the Daily pile
+            (experiments, medication, activities and breakdowns) and resolve
+            them left to right. Most of them cost you sanity.
+          </li>
+          <li>
+            <strong>The investigation:</strong> roll a d20. On 11 or higher, you
+            draw from the Investigation pile, where you find memory fragments
+            and evidence.
+          </li>
+        </ul>
+        <p>
+          You start with 15 sanity. You win with 4 Evidence cards, and you lose
+          if your sanity reaches 0 or you collect 3 Breakdown cards.
+        </p>
+      </section>
+
+      <div class="mission">
+        <nav class="stages" aria-label="Case study stages">
+          <ol>
+            <li>
+              <a href="#problem"
+                ><span class="n">1</span><span class="s">Problem</span></a
+              >
+            </li>
+            <li>
+              <a href="#tested"
+                ><span class="n">2</span><span class="s">What I tested</span></a
+              >
+            </li>
+            <li>
+              <a href="#changed"
+                ><span class="n">3</span
+                ><span class="s">What I changed</span></a
+              >
+            </li>
+            <li>
+              <a href="#happened"
+                ><span class="n">4</span><span class="s">What happened</span></a
+              >
+            </li>
+          </ol>
+        </nav>
+
+        <div class="stage-list">
+          <section class="stage" id="problem" aria-labelledby="st1">
+            <h2 class="stage-title" id="st1">
+              <span class="stage-no">Stage 1</span> Problem
+            </h2>
+            <div class="quests two">
+              <article class="quest">
+                <p class="quest-tag">Quest A <span>· Problem</span></p>
+                <h3 class="quest-title">
+                  Losing your mind makes you lose your memories
+                </h3>
+                <p>
+                  In a horror game about sanity, losing sanity should feel like
+                  more than a number going down.
+                </p>
+              </article>
+              <article class="quest">
+                <p class="quest-tag">Quest B <span>· Problem</span></p>
+                <h3 class="quest-title">
+                  Each identity bends the rules differently
+                </h3>
+                <p>
+                  Four playable characters needed to feel different without
+                  separate rulebooks.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="stage" id="tested" aria-labelledby="st2">
+            <h2 class="stage-title" id="st2">
+              <span class="stage-no">Stage 2</span> What I tested
+            </h2>
+            <p>
+              We playtested the game as a team and adjusted it based on how the
+              sessions went.
+            </p>
+          </section>
+
+          <section class="stage" id="changed" aria-labelledby="st3">
+            <h2 class="stage-title" id="st3">
+              <span class="stage-no">Stage 3</span> What I changed
+            </h2>
+            <div class="quests two">
+              <article class="quest">
+                <p class="quest-tag">Quest A <span>· Rule</span></p>
+                <h3 class="quest-title">
+                  Losing your mind makes you lose your memories
+                </h3>
+                <p>
+                  When your sanity drops below 6, any new Memory Fragment you
+                  gain is discarded. Low sanity doesn't just bring you closer to
+                  losing. It also stops you from collecting the evidence you
+                  need to win.
+                </p>
+              </article>
+              <article class="quest">
+                <p class="quest-tag">Quest B <span>· Rule</span></p>
+                <h3 class="quest-title">
+                  Each identity bends the rules differently
+                </h3>
+                <p>
+                  Each Identity card changes one rule. The Journalist only needs
+                  3 Evidence to win. The Patient takes −2 on every dice roll.
+                  The Survivor must roll above 15 to avoid losing sanity from
+                  Experiment cards. The General Public has no ability.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="stage" id="happened" aria-labelledby="st4">
+            <h2 class="stage-title" id="st4">
+              <span class="stage-no">Stage 4</span> What happened
+            </h2>
+            <div class="quests two">
+              <article class="quest cleared">
+                <p class="quest-tag">Quest A <span>· Result</span></p>
+                <h3 class="quest-title">
+                  Losing your mind makes you lose your memories
+                </h3>
+                <p>
+                  The theme and the mechanics push the same way: the more broken
+                  your mind, the harder the truth is to hold on to.
+                </p>
+              </article>
+              <article class="quest cleared">
+                <p class="quest-tag">Quest B <span>· Result</span></p>
+                <h3 class="quest-title">
+                  Each identity bends the rules differently
+                </h3>
+                <p>
+                  4 characters that change how risky each turn feels, all using
+                  the same deck.
+                </p>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <section aria-labelledby="cards-title">
+        <div class="briefing"><h2 id="cards-title">The cards</h2></div>
+        <figure class="media">
+          <img
+            src="../assets/mkultra/investigation.jpg"
+            alt="Ten Investigation cards illustrated in blue line art, including Leak to Press, Anonymous Tip and Encrypted Memo"
+            loading="lazy"
+            width="1895"
+            height="1149"
+          />
+          <figcaption class="cap">
+            <span class="cap-no" aria-hidden="true"></span>
+            <span class="cap-title">MK-ULTRA deck: Investigation cards</span>
+            <span class="cap-line"
+              >Drawn when the d20 roll is 11 or higher.</span
+            >
+          </figcaption>
+        </figure>
+        <div class="two-up" style="--slot: 1480 / 528">
+          <figure class="media">
+            <img
+              src="../assets/mkultra/experiment.jpg"
+              alt="Three green Experiment cards: Electroshock, Lobotomy Threat and Psychic Driving"
+              loading="lazy"
+              width="1480"
+              height="528"
+            />
+            <figcaption class="cap">
+              <span class="cap-no" aria-hidden="true"></span>
+              <span class="cap-title">MK-ULTRA deck: Experiment cards</span>
+              <span class="cap-line"
+                >From the Daily pile, drawn each turn.</span
+              >
+            </figcaption>
+          </figure>
+          <figure class="media">
+            <img
+              src="../assets/mkultra/medication.jpg"
+              alt="Five green Medication cards"
+              loading="lazy"
+              width="1810"
+              height="533"
+            />
+            <figcaption class="cap">
+              <span class="cap-no" aria-hidden="true"></span>
+              <span class="cap-title">MK-ULTRA deck: Medication cards</span>
+              <span class="cap-line"
+                >From the Daily pile, drawn each turn.</span
+              >
+            </figcaption>
+          </figure>
+        </div>
+        <div class="two-up" style="--slot: 1076 / 1105">
+          <figure class="media">
+            <img
+              src="../assets/mkultra/breakdown-activity.jpg"
+              alt="Three red Breakdown cards and three Activity cards"
+              loading="lazy"
+              width="1076"
+              height="1105"
+            />
+            <figcaption class="cap">
+              <span class="cap-no" aria-hidden="true"></span>
+              <span class="cap-title"
+                >MK-ULTRA deck: Breakdown and Activity cards</span
+              >
+              <span class="cap-line"
+                >From the Daily pile. Collect 3 Breakdown cards and you
+                lose.</span
+              >
+            </figcaption>
+          </figure>
+          <figure class="media">
+            <img
+              src="../assets/mkultra/fragments.jpg"
+              alt="Memory Fragment cards that join into larger pictures"
+              loading="lazy"
+              width="1895"
+              height="1105"
+            />
+            <figcaption class="cap">
+              <span class="cap-no" aria-hidden="true"></span>
+              <span class="cap-title"
+                >MK-ULTRA deck: Memory Fragment cards</span
+              >
+              <span class="cap-line"
+                >Pairs and sets join into one picture.</span
+              >
+            </figcaption>
+          </figure>
+        </div>
+        <figure class="media">
+          <img
+            src="../assets/mkultra/evidence.jpg"
+            alt="Four Evidence cards styled as photos, documents and a floor plan"
+            loading="lazy"
+            width="1822"
+            height="533"
+          />
+          <figcaption class="cap">
+            <span class="cap-no" aria-hidden="true"></span>
+            <span class="cap-title">MK-ULTRA deck: Evidence cards</span>
+            <span class="cap-line">Collect 4 to win.</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section aria-labelledby="dlc-title">
+        <div class="briefing">
+          <h2 id="dlc-title">My <span class="nobr">3-card</span> expansion</h2>
+          <p>
+            I designed and illustrated an expansion that brings the people
+            behind the experiments into the game:
+          </p>
+          <ul class="bullets">
+            <li>
+              <strong>Psychiatrist:</strong> a new Identity card based on Dr.
+              Donald Ewen Cameron, a psychiatrist involved in the real MKUltra
+              experiments.
+            </li>
+            <li>
+              <strong>Despair Amplifier:</strong> forces the survivor to lose 2
+              sanity and skip their next investigation phase.
+            </li>
+            <li>
+              <strong>Mind's Abyss:</strong> shuffles 1 of the survivor's Memory
+              Fragments back into the deck, undoing progress.
+            </li>
+          </ul>
+        </div>
+        <figure class="media">
+          <img
+            src="../assets/mkultra/dlc-mine.jpg"
+            alt="Charity's three expansion cards: Psychiatrist, Despair Amplifier and Mind's Abyss"
+            loading="lazy"
+            width="1052"
+            height="528"
+          />
+          <figcaption class="cap">
+            <span class="cap-no" aria-hidden="true"></span>
+            <span class="cap-title"
+              >MK-ULTRA expansion: Psychiatrist, Despair Amplifier, Mind's
+              Abyss</span
+            >
+            <span class="cap-line"
+              >My 3-card expansion, designed and illustrated on my own.</span
+            >
+          </figcaption>
+        </figure>
+      </section>
+
+      <section aria-labelledby="rules-title">
+        <div class="briefing"><h2 id="rules-title">Rulebook</h2></div>
+        <figure class="media narrow">
+          <img
+            src="../assets/mkultra/rulebook.jpg"
+            alt="First page of the MK-ULTRA rulebook"
+            loading="lazy"
+            width="1000"
+            height="1414"
+          />
+          <figcaption class="cap">
+            <span class="cap-no" aria-hidden="true"></span>
+            <span class="cap-title">MK-ULTRA rulebook: first page</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <nav class="next" aria-label="More projects">
+        <a href="level-design.html" data-wipe="Level Design"
+          ><small>Previous</small><strong>← Level Design</strong></a
+        >
+        <a class="right" href="rhythm-punk.html" data-wipe="Rhythm Punk"
+          ><small>Next project</small><strong>Rhythm Punk →</strong></a
+        >
+      </nav>
+    </main>
+    <footer class="foot">
+      <div class="wrap">
+        <span>© <span id="year">2026</span> Charity Tan</span>
+        <span class="foot-links">
+          <a href="mailto:charitytanwork@gmail.com">charitytanwork@gmail.com</a>
+          <a
+            class="foot-mark"
+            href="https://www.linkedin.com/in/charity-tan/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Charity Tan on LinkedIn"
+          >
+            <svg
+              class="mark"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fill="currentColor"
+                fill-rule="evenodd"
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+              />
+            </svg>
+          </a>
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>
