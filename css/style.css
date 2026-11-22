@@ -710,7 +710,7 @@ em {
   padding-inline: 4px;
 }
 
-/* Sprites: still unless asked, or a four-second hello on arrival. */
+/* Sprites: each sheet plays its frames in a loop. */
 .party,
 .sprites {
   background: var(--panel);
@@ -742,7 +742,7 @@ em {
   flex: none;
   background: var(--sheet) no-repeat 0 0 / calc(var(--w) * var(--n)) var(--h);
   image-rendering: pixelated;
-  animation: sprite-play var(--dur) steps(var(--n)) infinite paused;
+  animation: sprite-play var(--dur) steps(var(--n)) infinite;
 }
 .sprite.megamob-idle {
   --sheet: url(../assets/rhythm/megamob_idle.png);
@@ -796,33 +796,6 @@ em {
   to {
     background-position: calc(var(--w) * var(--n) * -1) 0;
   }
-}
-.is-playing .sprite,
-.is-intro .sprite {
-  animation-play-state: running;
-}
-@media (hover: hover) {
-  [data-party]:hover .sprite {
-    animation-play-state: running;
-  }
-}
-.toggle {
-  font: 400 1.25rem/1 var(--pixel);
-  color: var(--ink);
-  background: var(--panel-2);
-  border: 2px solid var(--muted);
-  padding: 8px 14px;
-  min-height: 44px;
-  cursor: pointer;
-}
-.toggle:hover {
-  border-color: var(--amber);
-  color: var(--amber);
-}
-.toggle[aria-pressed="true"] {
-  background: var(--amber);
-  color: var(--bg);
-  border-color: var(--amber);
 }
 
 .inv-title {
@@ -1040,19 +1013,6 @@ figcaption {
   font: 400 0.92rem/1.45 var(--body);
   color: var(--muted);
 }
-.cap-act {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px 16px;
-}
-.cap-text {
-  display: grid;
-  gap: 4px;
-  flex: 1 1 16rem;
-  min-width: 0;
-}
 
 /* Pictures, videos and charts */
 .media {
@@ -1153,6 +1113,12 @@ figcaption {
 @media (min-width: 552px) {
   .gallery img {
     aspect-ratio: var(--slot, auto);
+  }
+  /* A gallery of pictures of different shapes: each figure carries its own
+     --slot, and the group's --cols gives each picture a column as wide as
+     it is at one shared height, so the row's pictures are one height. */
+  .gallery.mixed {
+    grid-template-columns: var(--cols);
   }
 }
 @media (min-width: 720px) {
@@ -1741,7 +1707,7 @@ figcaption {
 }
 
 /* Reduced motion: the designed still form. Everything sits at its final
-   state; sprites move only when the visitor presses "Animate sprites". */
+   state, and the sprites stand on their first frame. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1757,8 +1723,5 @@ figcaption {
   .btn:hover .pip,
   .btn:focus-visible .pip {
     transform: none;
-  }
-  .is-playing .sprite {
-    animation: sprite-play var(--dur) steps(var(--n)) infinite running !important;
   }
 }

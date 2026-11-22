@@ -1,6 +1,6 @@
-/* Level Select: the stepped selection cursor, the sprites, the case-study
-   stage tracker, and the pixel wipe that is the change between any two
-   pages of the site, in every browser. No library. */
+/* Level Select: the stepped selection cursor, the case-study stage
+   tracker, and the pixel wipe that is the change between any two pages of
+   the site, in every browser. No library. */
 (function () {
   "use strict";
 
@@ -145,34 +145,6 @@
     window.addEventListener("resize", function () {
       if (active) place(active, true);
     });
-  }
-
-  /* ---------- Sprites: still unless asked, or a four-second hello ---------- */
-  function initParty(party) {
-    var button = party.querySelector("[data-sprite-toggle]");
-    if (button) {
-      button.addEventListener("click", function () {
-        var on = !party.classList.contains("is-playing");
-        party.classList.toggle("is-playing", on);
-        button.setAttribute("aria-pressed", on ? "true" : "false");
-      });
-    }
-    if (reduce || !("IntersectionObserver" in window)) return;
-    var io = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          io.disconnect();
-          if (reduce) return;
-          party.classList.add("is-intro");
-          setTimeout(function () {
-            party.classList.remove("is-intro");
-          }, 4000);
-        });
-      },
-      { threshold: 0.5 },
-    );
-    io.observe(party);
   }
 
   /* ---------- Case study: the current stage ---------- */
@@ -330,11 +302,6 @@
 
   motionQuery.addEventListener("change", function (e) {
     reduce = e.matches;
-    if (reduce) {
-      each(".is-intro", function (p) {
-        p.classList.remove("is-intro");
-      });
-    }
   });
 
   var arrival = coverArrival();
@@ -344,7 +311,6 @@
     if (year) year.textContent = String(new Date().getFullYear());
 
     each("[data-select]", initSelect);
-    each("[data-party]", initParty);
     initStages();
     initWipe();
     openArrival(arrival);
